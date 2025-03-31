@@ -83,9 +83,9 @@ public class Juego {
 	}
 
   public class Jugador {
-		private String nombre; // Break Encapsulate
-		private String apellido; // Break Encapsulate
-		private int puntuacion = 0; // Break Encapsulate
+		private String nombre; 
+		private String apellido; 
+		private int puntuacion = 0; 
     
     public void incrementarPuntuacion() { 
 			j.puntuacion =+ 100;
