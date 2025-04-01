@@ -1,4 +1,4 @@
-## Ejercicio2.3
+# Ejercicio2.3
 
 ```java
 public List<Post> ultimosPosts(Usuario user, int cantidad) { // Long Method
