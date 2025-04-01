@@ -1,4 +1,4 @@
-## Ejercicio 2.2 - Refactoring 
+# Ejercicio 2.2
 
 ```java
 public class Juego {
