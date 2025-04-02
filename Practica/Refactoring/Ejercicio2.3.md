@@ -27,7 +27,7 @@ public List<Post> ultimosPosts(Usuario user, int cantidad) { // Long Method
 		ultimosPosts.add(postIterator.next());
 	}
 	return ultimosPosts;		
-}																								// Long Method
+}				// Long Method
 ```
 
 ## Code Smell: Long Method, Comments
@@ -40,7 +40,7 @@ public List<Post> ultimosPosts(Usuario user, int cantidad) {
   return obtenerUltimosNPosts(postOtrosUsuarios, cantidad);		
 }	
 
-public List<Post> obtenerPostsExcluyendoUsuario(Usuario user){ 	// Duplicated Code
+public List<Post> obtenerPostsExcluyendoUsuario(Usuario user){ 	// Reivent wheel
 	List<Post> postsOtrosUsuarios = new ArrayList<Post>();
 	for (Post post : this.posts) {
 		if (!post.getUsuario().equals(user)) {
@@ -50,7 +50,7 @@ public List<Post> obtenerPostsExcluyendoUsuario(Usuario user){ 	// Duplicated Co
   return postsOtrosUsuarios
 }
 
-public List<Post> ordenarPostsMasRecientesPrimero (List<Post> posts){ 	// Duplicated Code
+public List<Post> ordenarPostsMasRecientesPrimero (List<Post> posts){ 	// Reivent wheel
   	for (int i = 0; i < posts.size(); i++) {
 		int masNuevo = i;
 		for(int j= i +1; j < postspostsposts.size(); j++) {
@@ -65,7 +65,7 @@ public List<Post> ordenarPostsMasRecientesPrimero (List<Post> posts){ 	// Duplic
   return posts;
 }
 
-public List<Post> obtenerUltimosNPosts(List<Post> posts, int cantidad){ 	// Duplicated Code
+public List<Post> obtenerUltimosNPosts(List<Post> posts, int cantidad){ 	// Reivent wheel
   List<Post> ultimosPosts = new ArrayList<Post>();
 	int index = 0;
 	Iterator<Post> postIterator = postsOtrosUsuarios.iterator();
@@ -76,7 +76,7 @@ public List<Post> obtenerUltimosNPosts(List<Post> posts, int cantidad){ 	// Dupl
 }
 ```
 
-## Code Smell: Duplicated Code
+## Code Smell: Reivent wheel
 ## Refactoring: Replace loop with pipeline
 
 ```java
@@ -106,7 +106,8 @@ public List<Post> obtenerUltimosNPosts(List<Post> posts, int cantidad){
 ```java
 public List<Post> ultimosPosts(Usuario user, int cantidad) { // Bad Name Method
   List<Post> posts = this.obtenerPostsExcluyendoUsuario(user);
-  return this.obtenerUltimosNPosts(ordenarPostsMasRecientesPrimero(posts), cantidad);		
+  ordenarPostsMasRecientesPrimero(posts)
+  return this.obtenerUltimosNPosts(posts, cantidad);		
 }	
 
 public List<Post> obtenerPostsExcluyendoUsuario( Usuario user){ 
@@ -128,11 +129,12 @@ public List<Post> obtenerUltimosNPosts(List<Post> posts, int cantidad){
 ```java
 public List<Post> ultimosNPostsExluyendoUsuario(Usuario user, int cantidad) { 
   List<Post> posts = this.obtenerPostsExcluyendoUsuario(user);
-  return this.obtenerUltimosNPosts(ordenarPostsMasRecientesPrimero(posts), cantidad);		
+  ordenarPostsMasRecientesPrimero(posts)
+  return this.obtenerUltimosNPosts(posts, cantidad);	
 }	
 
 public List<Post> obtenerPostsExcluyendoUsuario( Usuario user){ 
-  return this.posts.stream().filter(post -> !post.getUsuario().equals(user)).Collect(Collectors.ToList());    
+  return this.posts.stream().filter(post -> !post.getUsuario().equals(user)).Collect(Collectors.ToList());     // Feature Envy
 }
 
 public List<Post> ordenarPostsMasRecientesPrimero (List<Post> posts){
@@ -143,6 +145,25 @@ public List<Post> obtenerUltimosNPosts(List<Post> posts, int cantidad){
   return posts.stream().limit(cantidad).collect(Collectors.toList());
 }
 ```
+## Code Smell: Feature Envy
+## Refactoring: Extract method
 
 
+```java
+public List<Post> ultimosNPostsExluyendoUsuario(Usuario user, int cantidad) { 
+  List<Post> posts = this.obtenerPostsExcluyendoUsuario(user);
+  return this.obtenerUltimosNPosts(ordenarPostsMasRecientesPrimero(posts), cantidad);		
+}	
 
+public List<Post> obtenerPostsExcluyendoUsuario( Usuario user){ 
+  return this.posts.stream().filter(post -> post.notUser(user)).Collect(Collectors.ToList());    
+}
+
+public List<Post> ordenarPostsMasRecientesPrimero (List<Post> posts){
+  return posts.stream().sorted((postf1,postf2)-> postf1.getFecha().compareTo(postf1.getFecha())).Collect(Collector.ToList());
+}
+
+public List<Post> obtenerUltimosNPosts(List<Post> posts, int cantidad){ 	
+  return posts.stream().limit(cantidad).collect(Collectors.toList());
+}
+```
