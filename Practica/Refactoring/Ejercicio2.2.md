@@ -17,7 +17,7 @@ public class Juego {
 	}
 }
 ```
-### Code Smell: Feature Envy -> Los metodos incrementar y decrementar acceden directamente atributos de otra clase.
+### Code Smell: Feature Envy 
 ### Refactor: Move Method
 ```java
 public class Juego {
@@ -43,7 +43,7 @@ public class Juego {
 	}
 }
 ```
-### Code Smell: Bad method names -> Los nombres de los metodos son poco explicativos con su propósito
+### Code Smell: Bad method names 
 ### Refactor: Change method name
 ```java
 public class Juego {
@@ -69,7 +69,7 @@ public class Juego {
 	}
 }
 ```
-### Code Smell: Break Encapsulate -> Los atributos de la clase Jugador son publicos y pueden modificarse desde otras clases
+### Code Smell: Break Encapsulate 
 ### Refactor: Encapsulate Field
 
 ```java
