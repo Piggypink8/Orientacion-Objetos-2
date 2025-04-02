@@ -35,10 +35,10 @@ public class Juego {
 		public int puntuacion = 0;
     
     public void incrementar() { //Bad method names
-			j.puntuacion =+ 100;
+			this.puntuacion =+ 100;
 		}
 		public void decrementar() { //Bad method names
-			j.puntuacion -= 50;
+			this.puntuacion -= 50;
 		}
 	}
 }
@@ -61,10 +61,10 @@ public class Juego {
 		public int puntuacion = 0; // Break Encapsulate
     
     public void incrementarPuntuacion() { 
-			j.puntuacion =+ 100;
+			this.puntuacion =+ 100;
 		}
 		public void decrementarPuntuacion() { 
-			j.puntuacion -= 50;
+			this.puntuacion -= 50;
 		}
 	}
 }
@@ -88,10 +88,10 @@ public class Juego {
 		private int puntuacion = 0; 
     
     public void incrementarPuntuacion() { 
-			j.puntuacion =+ 100;
+			this.puntuacion =+ 100;
 		}
 		public void decrementarPuntuacion() { 
-			j.puntuacion -= 50;
+			this.puntuacion -= 50;
 		}
 	}
 }
