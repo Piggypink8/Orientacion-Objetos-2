@@ -167,3 +167,6 @@ public List<Post> obtenerUltimosNPosts(List<Post> posts, int cantidad){
   return posts.stream().limit(cantidad).collect(Collectors.toList());
 }
 ```
+
+
+## Supuse un metodo que evalua que no sea el mismo usuario, no lo implementé pero creo que sería bastante obvio, en caso de hacerlo en un parcial, preguntaría si tengo que hacer la implementación o no.
