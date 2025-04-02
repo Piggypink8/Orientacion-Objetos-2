@@ -1,3 +1,6 @@
+# Ejercicio 2.5
+
+```java
 public class Supermercado {
 	public void notificarPedido(long nroPedido, Cliente cliente) {
 		String notificacion = MessageFormat.format(“Estimado cliente, se le informa
@@ -15,10 +18,12 @@ public class Cliente {
 		this.direccion.getNumero() +“, ”+  // Feature Envy
 		this.direccion.getDepartamento(); // Feature Envy
 }
-  
+```  
+
 ## Code Smell: Feature Envy
 ## Refactoring: Extract Method
-  
+
+```java
 public class Supermercado {
 	public void notificarPedido(long nroPedido, Cliente cliente) {
 		String notificacion = MessageFormat.format(“Estimado cliente, se le informa
@@ -50,12 +55,14 @@ public class Direccion {
   }  
     
 }
+```
 
 ## Code Smell: Break Encapsulate
 ## Refactoring: Encapsulate Field
-  
+
+```java  
 public class Supermercado {
-	public void notificarPedido(long nroPedido, Cliente cliente) { // Long Method
+	public void notificarPedido(long nroPedido, Cliente cliente) { 
 		String notificacion = MessageFormat.format(“Estimado cliente, se le informa
 		que hemos recibido su pedido con número {0}, el cual será enviado a la dirección
 		{1}”, new Object[] { nroPedido, cliente.getDireccionFormateada() });
@@ -85,4 +92,4 @@ public class Direccion {
   }  
     
 }  
-
+```
