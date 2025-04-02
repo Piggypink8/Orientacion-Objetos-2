@@ -1,3 +1,6 @@
+# Ejercicio2.6
+
+```java
 public class Usuario {
 	String tipoSubscripcion;
 // ...
@@ -34,11 +37,12 @@ public class Pelicula {
 		return (ChronoUnit.DAYS.between(this.fechaEstreno, LocalDate.now()) ) > 30 ? 0 : 300;
 	}
 }
+```
 
 ## Code Smell: Switch Statement
 ## Refactoring: Replace Conditional with Polymorphism
 
-
+```java
 public class Usuario {
 	private Interface tipoSubscripcion;
 // ...
@@ -88,10 +92,12 @@ public class Pelicula {
 		return (ChronoUnit.DAYS.between(this.fechaEstreno, LocalDate.now()) ) > 30 ? 0 : 300;
 	}
 }
+```
 
 ## Code Smell: Magic Numbers
 ## Refactoring: Extract Method
 
+```java
 public class Usuario {
 	private Interface tipoSubscripcion;
 // ...
@@ -149,10 +155,12 @@ public class Pelicula {
 		return (ChronoUnit.DAYS.between(this.fechaEstreno, LocalDate.now()) ) > 30 ? 0 : 300;
 	}
 }
+```
 
 ## Code Smell: Comments
 ## Refactoring: Extract Method
 
+```java
 public class Usuario {
 	private Interface tipoSubscripcion;
 // ...
@@ -216,19 +224,4 @@ public class Pelicula {
   	return ChronoUnit.DAYS.between(this.fechaEstreno, LocalDate.now())
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
