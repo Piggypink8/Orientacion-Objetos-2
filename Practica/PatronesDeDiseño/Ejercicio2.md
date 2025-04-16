@@ -1,3 +1,8 @@
+## Ejercicio 2
+
+### Aplico patrón de diseño template method.
+
+```java
 public abstract class Empleado {
 	private int sueldoBasico;
 	
@@ -18,7 +23,6 @@ public abstract class Empleado {
 		return this.basico() + this.adicional() - this.descuento();
 	}
 }
-
 public class Temporario extends Empleado {
 	private int cantHijos;
 	private int cantHoras;
@@ -50,7 +54,6 @@ public class Temporario extends Empleado {
 	
 
 }
-
 public class Pasante extends Empleado {
 	private int examenRendidos;
 	@Override
@@ -64,7 +67,6 @@ public class Pasante extends Empleado {
 	}
 
 }
-
 public class Planta extends Empleado{
 	private int cantHijos;
 	private boolean casado;
@@ -89,3 +91,4 @@ public class Planta extends Empleado{
 
 
 }
+```
