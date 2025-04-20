@@ -92,3 +92,27 @@ public class Planta extends Empleado{
 
 }
 ```
+
+### TEST
+
+```java
+public class EmpleadoTest {
+	
+	Empleado pasante, temporario, planta;
+	
+	@BeforeEach
+	void setUp() throws Exception {
+		pasante = new Pasante(1);
+		temporario = new Temporario(1,1,true);
+		planta = new Planta(1,true,1);
+	}
+	
+    @Test
+    public void testSueldo() {
+    	
+        assertEquals(19300, pasante.sueldo());
+        assertEquals(24350, temporario.sueldo());
+        assertEquals(52050, planta.sueldo());
+    }
+}
+```
