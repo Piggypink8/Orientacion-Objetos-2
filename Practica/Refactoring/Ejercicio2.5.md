@@ -21,7 +21,7 @@ public class Cliente {
 ```  
 
 ## Code Smell: Feature Envy
-## Refactoring: Extract Method
+## Refactoring: Move Method
 
 ```java
 public class Supermercado {
